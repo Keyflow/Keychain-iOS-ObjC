@@ -25,4 +25,4 @@ For Swift version of this code please take a look at [Keychain-iOS-Swift](https:
 
 ## License
 
-This project is licensed under the terms of the MIT license.
+This project is licensed under the terms of the MIT [license](https://github.com/Keyflow/Keychain-iOS-ObjC/blob/master/LICENSE.md).
