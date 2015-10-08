@@ -1,5 +1,5 @@
 # Keychain-iOS-ObjC
-Keychain-iOS-ObjC is a simple Objective-C wrapper for working with the Keychain in iOS, `KFKeychain` class is able to save, load and delete from iOS Keychain arbitrary objects, including, for example, `NSSString` and `NSDictionary`.
+Keychain-iOS-ObjC is a simple Objective-C wrapper for working with the Keychain in iOS, `KFKeychain` class is able to save, load and delete from iOS Keychain arbitrary objects, including, for example, `NSString` and `NSDictionary`.
 
 ## Example
 
