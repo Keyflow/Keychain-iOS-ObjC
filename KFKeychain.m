@@ -18,8 +18,9 @@
     NSMutableDictionary *keychainQuery = [self keychainQueryForKey:key];
     // Deleting previous object with this key, because SecItemUpdate is more complicated.
     [self deleteObjectForKey:key];
-    
-    [keychainQuery setObject:[NSKeyedArchiver archivedDataWithRootObject:object] forKey:(__bridge id)kSecValueData];
+
+    NSError *error = nil;
+    [keychainQuery setObject:[NSKeyedArchiver archivedDataWithRootObject:object requiringSecureCoding:YES error:&error] forKey:(__bridge id)kSecValueData];
     return [self checkOSStatus:SecItemAdd((__bridge CFDictionaryRef)keychainQuery, NULL)];
 }
 
@@ -35,7 +36,8 @@
     
     if ([self checkOSStatus:SecItemCopyMatching((__bridge CFDictionaryRef)keychainQuery, (CFTypeRef *)&keyData)]) {
         @try {
-            object = [NSKeyedUnarchiver unarchiveObjectWithData:(__bridge NSData *)keyData];
+            NSError *error = nil;
+            object = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSString class] fromData:(__bridge NSData *)keyData error:&error];
         }
         @catch (NSException *exception) {
             NSLog(@"Unarchiving for key %@ failed with exception %@", key, exception.name);
